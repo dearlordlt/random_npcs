@@ -13,8 +13,48 @@
   <body>
     
     <div class="container">
-        <div id="app">
-            {{ message }}
+        <div id="npcs">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">ATT</th>
+                <th scope="col">DEF</th>
+                <th scope="col">STR</th>
+                <th scope="col">MOVE</th>
+                <th scope="col">WEAPON</th>
+                <th scope="col">SHIELD</th>
+                <th scope="col">HP</th>
+                <th scope="col">MAGIC</th>
+                <th scope="col">CASTED</th>
+                <th scope="col">*</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(npc, index) in npcs">
+                <td>{{ index+1 }}</td>
+                <td>{{ npc.name }}</td>
+                <td>{{ npc.att }}</td>
+                <td>{{ npc.def }}</td>
+                <td>{{ npc.STR }}</td>
+                <td>{{ npc.move }}</td>
+                <td>{{ npc.weapon }}</td>
+                <td>{{ npc.shield }}</td>
+                <td><input type="text" class="form-control form-control-sm" v-model="npc.hp"></td>
+                <td>{{ npc.magic }}</td>
+                <td><input type="checkbox" aria-label="spell is cast"></td>
+                <td><span class="badge badge-danger" v-if="npc.hp <= 0">DEAD</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon1" v-on:click="generate">Generate</button>
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="clear">Clear</button>
+            </div>
+            <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" v-model="npc_number">
+          </div>
         </div>
     </div>
     <!-- Optional JavaScript -->
@@ -22,6 +62,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="name_generator.js"></script>
+    <script type="text/javascript" src="egyptian_set.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="app.js"></script>
   </body>

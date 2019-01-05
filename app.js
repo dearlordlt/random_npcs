@@ -1,6 +1,48 @@
-var app = new Vue({
-    el: '#app',
+const npcs = new Vue({
+    el: '#npcs',
     data: {
-      message: 'Hello Vue!'
+        npcs: [],
+        npc_number: 15,
+        weapons: [
+            'dagger',
+            'sword',
+            'axe',
+            'mace',
+            'spear'
+        ],
+        spells: [
+            'Shock',
+            'Sunder armor',
+            'Impact',
+            'Curse',
+            'Summon Spirit',
+            'Teleport',
+            'Precise Att/Def',
+            'Heal',
+            'Block Spell'
+        ]
+    },
+    methods: {
+        generate: function() {
+            console.log('Generating');
+            for(let i = 0; i < this.npc_number; i++) {
+                const magicPower = Math.floor(Math.random()*4) - 1;
+                const newNpc = { 
+                    name: generate_name('egyptian'), 
+                    att: Math.floor(Math.random()*4), 
+                    def: Math.floor(Math.random()*4),
+                    STR: 10 + Math.floor(Math.random()*4), 
+                    move: 3 + Math.floor(Math.random()*4) + 1, 
+                    weapon: this.weapons[Math.floor(Math.random()*this.weapons.length)], 
+                    shield: true,
+                    hp: 10 + Math.floor(Math.random()*4), 
+                    magic:  magicPower > 0 ? magicPower + ' ' + this.spells[Math.floor(Math.random()*this.spells.length)] : '-'
+                }
+                this.npcs.push(newNpc);
+            }
+        },
+        clear: function() {
+            this.npcs = [];
+        }
     }
-  })
+})
