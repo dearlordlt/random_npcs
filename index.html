@@ -12,7 +12,7 @@
   </head>
   <body>
     
-    <div class="container">
+    <div>
         <div id="npcs">
           <table class="table">
             <thead>
@@ -25,6 +25,7 @@
                 <th scope="col">MOVE</th>
                 <th scope="col">WEAPON</th>
                 <th scope="col">SHIELD</th>
+                <th scope="col">ARMOR</th>
                 <th scope="col">HP</th>
                 <th scope="col">MAGIC</th>
                 <th scope="col">CASTED</th>
@@ -41,9 +42,19 @@
                 <td>{{ npc.move }}</td>
                 <td>{{ npc.weapon }}</td>
                 <td>{{ npc.shield }}</td>
-                <td><input type="text" class="form-control form-control-sm" v-model="npc.hp"></td>
+                <td>{{ npc.armor }}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-sm">
+                            <input type="text" class="form-control form-control-sm" v-model="npc.hp" maxlength="2" size="2">
+                        </div>
+                        <div class="col-sm">
+                            <button class="btn btn-outline-secondary form-control-sm" type="button" id="button-addon1" v-on:click="kill(index)">Kill</button>
+                        </div>
+                    </div>
+                </td>
                 <td>{{ npc.magic }}</td>
-                <td><input type="checkbox" aria-label="spell is cast"></td>
+                <td><span v-if="npc.magicPower > 0"><input type="checkbox" aria-label="spell is cast"></span></td>
                 <td><span class="badge badge-danger" v-if="npc.hp <= 0">DEAD</span></td>
               </tr>
             </tbody>
