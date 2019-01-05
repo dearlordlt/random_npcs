@@ -2,7 +2,7 @@ const npcs = new Vue({
     el: '#npcs',
     data: {
         npcs: [],
-        npc_number: 15,
+        npc_number: 5,
         weapons: [
             'dagger',
             'sword',

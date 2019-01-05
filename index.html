@@ -36,12 +36,12 @@
               <tr v-for="(npc, index) in npcs">
                 <td>{{ index+1 }}</td>
                 <td>{{ npc.name }}</td>
-                <td>{{ npc.att }}</td>
-                <td>{{ npc.def }}</td>
+                <td><input type="text" class="form-control form-control-sm" v-model="npc.att" maxlength="2" size="2"></td>
+                <td><input type="text" class="form-control form-control-sm" v-model="npc.def" maxlength="2" size="2"></td>
                 <td>{{ npc.STR }}</td>
                 <td>{{ npc.move }}</td>
                 <td>{{ npc.weapon }}</td>
-                <td>{{ npc.shield }}</td>
+                <td><input type="text" class="form-control form-control-sm" v-model="npc.shield" maxlength="2" size="2" v-if="npc.shield > 0"></td>
                 <td>{{ npc.armor }}</td>
                 <td>
                     <div class="row">
