@@ -27,6 +27,7 @@
                 <th scope="col">WEAPON</th>
                 <th scope="col">ARMOR</th>
                 <th scope="col">HP</th>
+                <th scope="col">DMG</th>
                 <th scope="col">MAGIC</th>
                 <th scope="col">CASTED</th>
                 <th scope="col">*</th>
@@ -52,6 +53,9 @@
                             <button class="btn btn-outline-secondary form-control-sm" type="button" id="button-addon1" v-on:click="kill(index)">Kill</button>
                         </div>
                     </div>
+                </td>
+                <td>
+                    <input type="text" class="form-control form-control-sm" maxlength="6" size="6" v-if="npc.hp > 0">
                 </td>
                 <td>{{ npc.magic }}</td>
                 <td><span v-if="npc.magicPower > 0"><input type="checkbox" aria-label="spell is cast"></span></td>
