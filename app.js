@@ -26,9 +26,7 @@ const npcs = new Vue({
     },
     methods: {
         generate: function() {
-            console.log('Generating');
             for(let i = 0; i < this.npc_number; i++) {
-                const magicPower = Math.floor(Math.random()*4) - 1;
                 const newNpc = { 
                     name: generate_name('egyptian'), 
                     att: Math.floor(Math.random()*5) + 10, 
@@ -40,7 +38,7 @@ const npcs = new Vue({
                     armor: Math.floor(Math.random()*3),
                     hp: 6 + Math.floor(Math.random()*6), 
                     magic: this.spells[Math.floor(Math.random()*this.spells.length)],
-                    magicPower: magicPower
+                    magicPower: Math.floor(Math.random()*4) - 1
                 }
                 this.npcs.push(newNpc);
             }
