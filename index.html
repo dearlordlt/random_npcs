@@ -21,10 +21,10 @@
                 <th scope="col">Name</th>
                 <th scope="col">ATT</th>
                 <th scope="col">DEF</th>
+                <th scope="col">SHIELD</th>
                 <th scope="col">STR</th>
                 <th scope="col">MOVE</th>
                 <th scope="col">WEAPON</th>
-                <th scope="col">SHIELD</th>
                 <th scope="col">ARMOR</th>
                 <th scope="col">HP</th>
                 <th scope="col">MAGIC</th>
@@ -38,10 +38,10 @@
                 <td>{{ npc.name }}</td>
                 <td><input type="text" class="form-control form-control-sm" v-model="npc.att" maxlength="2" size="2"></td>
                 <td><input type="text" class="form-control form-control-sm" v-model="npc.def" maxlength="2" size="2"></td>
+                <td><input type="text" class="form-control form-control-sm" v-model="npc.shield" maxlength="2" size="2" v-if="npc.shield > 0"></td>
                 <td>{{ npc.STR }}</td>
                 <td>{{ npc.move }}</td>
                 <td>{{ npc.weapon }}</td>
-                <td><input type="text" class="form-control form-control-sm" v-model="npc.shield" maxlength="2" size="2" v-if="npc.shield > 0"></td>
                 <td>{{ npc.armor }}</td>
                 <td>
                     <div class="row">
