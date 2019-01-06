@@ -7,7 +7,7 @@ const npcs = new Vue({
             {name: 'dagger', description: 'R0/1, SW 0+BBT, TR 0+BBC, W0, +1 to attack from side hexes, +1 Armor Piercing TR'},
             {name: 'sword', description: 'R1, SW 1+BBT, TR 1+BBC, W1, +1 to defence when using shield'},
             {name: 'axe', description: 'R1, SW 2+BBC, W2, +2 to shield damage'},
-            {name: 'mace', description: 'R1, SW 3+TTTT, W3, Stun damage to head'},
+            {name: 'mace', description: 'R1, SW 3+TTTT, W3, Stun damage to head, +2 Fatigue'},
             {name: 'spear', description: 'R2, TR 2+BBC, W2, +1W when used in one hand'},
             {name: 'bow', description: 'BBC, STR12, W2'},
             {name: 'throwing spear', description: 'R:STR*2, BBC, W2'},
