@@ -4,22 +4,24 @@ const npcs = new Vue({
         npcs: [],
         npc_number: 1,
         weapons: [
-            'dagger',
-            'sword',
-            'axe',
-            'mace',
-            'spear'
+            {name: 'dagger', description: 'R0/1, SW 0+BBT, TR 0+BBC, W0, +1 to attack from side hexes, +1 Armor Piercing TR'},
+            {name: 'sword', description: 'R1, SW 1+BBT, TR 1+BBC, W1, +1 to defence when using shield'},
+            {name: 'axe', description: 'R1, SW 2+BBC, W2, +2 to shield damage'},
+            {name: 'mace', description: 'R1, SW 3+TTTT, W3, Stun damage to head'},
+            {name: 'spear', description: 'R2, TR 2+BBC, W2, +1W when used in one hand'},
+            {name: 'bow', description: 'BBC, STR12, W2'},
+            {name: 'throwing spear', description: 'R:STR*2, BBC, W2'},
         ],
         spells: [
-            'Shock',
-            'Sunder armor',
-            'Impact',
-            'Curse',
-            'Summon Spirit',
-            'Teleport',
-            'Precise Att/Def',
-            'Heal',
-            'Block Spell'
+            {name: 'Shock', description: 'COST:1/d, R: POW, Shocks target with damage or breaks shield'},
+            {name: 'Sunder armor', description: 'COST:1*Q/Armor, R: Melee, Breaks target armor'},
+            {name: 'Impact', description: 'COST:4, R: POW*2 (MINR: POW), Charges to target dealing POW+1 damage. This is automatic success and full turn action'},
+            {name: 'Curse', description: 'COST:1/e, R: MST*2, Curses attack or defence of target; MAX = MST'},
+            {name: 'Summon Spirit', description: 'COST:3, R: MST, Attacks target for MST/2 (min 1) until destroyed. Maximum one summon per caster'},
+            {name: 'Teleport', description: 'COST:2, R: MST*2, Teleports to location (LOS); this action is free'},
+            {name: 'Precise Att/Def', description: 'COST:2 per +1, R: Weapon, Enhance Att/Def Max KNW/2'},
+            {name: 'Heal', description: 'COST:1 per HP, R: KW*2, Heals target/Self'},
+            {name: 'Block Spell', description: 'COST:1 per Caster Power, R: KW*2, Can be casted on Ally'}
         ]
     },
     methods: {
@@ -37,7 +39,7 @@ const npcs = new Vue({
                     shield: Math.floor(Math.random()*3),
                     armor: Math.floor(Math.random()*3),
                     hp: 6 + Math.floor(Math.random()*6), 
-                    magic:  magicPower > 0 ? magicPower + ' ' + this.spells[Math.floor(Math.random()*this.spells.length)] : '-',
+                    magic: this.spells[Math.floor(Math.random()*this.spells.length)],
                     magicPower: magicPower
                 }
                 this.npcs.push(newNpc);
@@ -51,3 +53,27 @@ const npcs = new Vue({
         }
     }
 })
+
+const bsTooltip = (el, binding) => {
+    const t = []
+  
+    if (binding.modifiers.focus) t.push('focus')
+    if (binding.modifiers.hover) t.push('hover')
+    if (binding.modifiers.click) t.push('click')
+    if (!t.length) t.push('hover')
+  
+    $(el).tooltip({
+      title: binding.value,
+      placement: binding.arg || 'top',
+      trigger: t.join(' '),
+      html: !!binding.modifiers.html,
+    });
+  }
+  
+  Vue.directive('tooltip', {
+    bind: bsTooltip,
+    update: bsTooltip,
+    unbind (el) {
+      $(el).tooltip('dispose')
+    }
+  });

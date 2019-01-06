@@ -42,7 +42,7 @@
                 <td><input type="text" class="form-control form-control-sm" v-model="npc.shield" maxlength="2" size="2" v-if="npc.shield > 0"></td>
                 <td>{{ npc.STR }}</td>
                 <td>{{ npc.move }}</td>
-                <td>{{ npc.weapon }}</td>
+                <td><span v-tooltip:auto="npc.weapon.description">{{ npc.weapon.name }}</span></td>
                 <td>{{ npc.armor }}</td>
                 <td>
                     <div class="row">
@@ -57,7 +57,7 @@
                 <td>
                     <input type="text" class="form-control form-control-sm" maxlength="6" size="6" v-if="npc.hp > 0">
                 </td>
-                <td>{{ npc.magic }}</td>
+                <td><span v-if="npc.magicPower > 0" v-tooltip:auto="npc.magic.description">{{ npc.magicPower }}:{{ npc.magic.name }}</span></td>
                 <td><span v-if="npc.magicPower > 0"><input type="checkbox" aria-label="spell is cast"></span></td>
                 <td><span class="badge badge-danger" v-if="npc.hp <= 0">DEAD</span></td>
               </tr>
