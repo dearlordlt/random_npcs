@@ -3,6 +3,7 @@ const npcs = new Vue({
     data: {
         npcs: [],
         npc_number: 1,
+        npc_power: 0,
         weapons: [
             {name: 'dagger', description: 'R0/1, SW 0+BBT, TR 0+BBC, W0, +1 to attack from side hexes, +1 Armor Piercing TR'},
             {name: 'sword', description: 'R1, SW 1+BBT, TR 1+BBC, W1, +1 to defence when using shield'},
@@ -25,28 +26,33 @@ const npcs = new Vue({
         ]
     },
     methods: {
-        generate: function() {
+        generate: function () {
             for(let i = 0; i < this.npc_number; i++) {
-                const newNpc = { 
-                    name: generate_name('egyptian'), 
-                    att: Math.floor(Math.random()*5) + 10, 
-                    def: Math.floor(Math.random()*5) + 10,
-                    STR: 10 + Math.floor(Math.random()*4), 
-                    move: 4 + Math.floor(Math.random()*4), 
-                    weapon: this.weapons[Math.floor(Math.random()*this.weapons.length)], 
-                    shield: Math.floor(Math.random()*3),
-                    armor: Math.floor(Math.random()*3),
-                    hp: 6 + Math.floor(Math.random()*6), 
-                    magic: this.spells[Math.floor(Math.random()*this.spells.length)],
-                    magicPower: Math.floor(Math.random()*4) - 1
-                }
-                this.npcs.push(newNpc);
+                this.npcs.push(npcs.getNpc());
             }
         },
-        clear: function() {
+        getNpc: function () {
+            const power = parseInt(this.npc_power);
+            const halfPower = Math.round(power/2);
+            const binaryPower = (power ? 1 : 0);
+            return { 
+                name: generate_name('egyptian'), 
+                att: 10 + power + Math.floor(Math.random()*5), 
+                def: 10 + power + Math.floor(Math.random()*5),
+                STR: 10 + binaryPower + Math.floor(Math.random()*4), 
+                move: 4 + halfPower + Math.floor(Math.random()*4), 
+                weapon: this.weapons[Math.floor(Math.random()*this.weapons.length)], 
+                shield: Math.floor(Math.random()*3),
+                armor: binaryPower + Math.floor(Math.random()*3),
+                hp: 6 + power + Math.floor(Math.random()*6), 
+                magic: this.spells[Math.floor(Math.random()*this.spells.length)],
+                magicPower: Math.floor(Math.random()*4) - 1 + binaryPower
+            }
+        },
+        clear: function () {
             this.npcs = [];
         },
-        kill: function(index) {
+        kill: function (index) {
             this.npcs[index].hp = 0;
         }
     }
@@ -54,24 +60,24 @@ const npcs = new Vue({
 
 const bsTooltip = (el, binding) => {
     const t = []
-  
+
     if (binding.modifiers.focus) t.push('focus')
     if (binding.modifiers.hover) t.push('hover')
     if (binding.modifiers.click) t.push('click')
     if (!t.length) t.push('hover')
-  
+
     $(el).tooltip({
-      title: binding.value,
-      placement: binding.arg || 'top',
-      trigger: t.join(' '),
-      html: !!binding.modifiers.html,
+        title: binding.value,
+        placement: binding.arg || 'top',
+        trigger: t.join(' '),
+        html: !!binding.modifiers.html,
     });
-  }
+}
   
-  Vue.directive('tooltip', {
+Vue.directive('tooltip', {
     bind: bsTooltip,
     update: bsTooltip,
     unbind (el) {
-      $(el).tooltip('dispose')
+        $(el).tooltip('dispose')
     }
-  });
+});
