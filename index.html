@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Random NPCS</title>
   </head>
   <body>
@@ -48,7 +49,20 @@
                 <td>{{ npc.name }}</td>
                 <td><input type="text" class="form-control form-control-sm" v-model="npc.att" maxlength="2" size="2"></td>
                 <td><input type="text" class="form-control form-control-sm" v-model="npc.def" maxlength="2" size="2"></td>
-                <td><input type="text" class="form-control form-control-sm" v-model="npc.shield" maxlength="2" size="2" v-if="npc.shield > 0"></td>
+                <td>
+                    <div class="row">
+                        <div class="col-sm">
+                            <input type="text" class="form-control form-control-sm" v-model="npc.shield" maxlength="1" size="1" v-if="npc.shield > 0">
+                        </div>
+                        <div class="col-sm">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                              <a role="button" class="btn btn-success btn-xsm" v-on:click.prevent="addShield(index)">+</a>
+                              <a role="button" class="btn btn-warning" v-on:click.prevent="removeShield(index)">-</a>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </td>
                 <td>{{ npc.STR }}</td>
                 <td>{{ npc.move }}</td>
                 <td><span v-tooltip:auto="npc.weapon.description">{{ npc.weapon.name }}</span></td>

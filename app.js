@@ -35,14 +35,15 @@ const npcs = new Vue({
             const power = parseInt(this.npc_power);
             const halfPower = Math.round(power/2);
             const binaryPower = (power ? 1 : 0);
+            const shield = Math.floor(Math.random()*3);
             return { 
                 name: generate_name('egyptian'), 
                 att: 10 + power + Math.floor(Math.random()*5), 
-                def: 10 + power + Math.floor(Math.random()*5),
+                def: 10 + power + Math.floor(Math.random()*5) + shield,
                 STR: 10 + binaryPower + Math.floor(Math.random()*4), 
                 move: 4 + halfPower + Math.floor(Math.random()*4), 
                 weapon: this.weapons[Math.floor(Math.random()*this.weapons.length)], 
-                shield: Math.floor(Math.random()*3),
+                shield: shield,
                 armor: binaryPower + Math.floor(Math.random()*3),
                 hp: 6 + power + Math.floor(Math.random()*6), 
                 magic: this.spells[Math.floor(Math.random()*this.spells.length)],
@@ -54,6 +55,12 @@ const npcs = new Vue({
         },
         kill: function (index) {
             this.npcs[index].hp = 0;
+        },
+        addShield: function(index) {
+            this.npcs[index].shield >=4 ? this.npcs[index].shield = 4 : (this.npcs[index].shield ++, this.npcs[index].def ++);
+        },
+        removeShield: function(index) {
+            this.npcs[index].shield <=0 ? this.npcs[index].shield = 0 : (this.npcs[index].shield --, this.npcs[index].def --);
         }
     }
 })
