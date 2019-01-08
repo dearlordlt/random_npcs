@@ -11,7 +11,7 @@ const npcs = new Vue({
             {name: 'mace', description: 'R1, SW 3+TTTT, W3, Stun damage to head, +2 Fatigue'},
             {name: 'spear', description: 'R2, TR 2+BBC, W2, +1W when used in one hand'},
             {name: 'bow', description: 'BBC, STR12, W2'},
-            {name: 'throwing spear', description: 'R:STR*2, BBC, W2'},
+            {name: 'th.spear', description: 'R:STR*2, BBC, W2'},
         ],
         spells: [
             {name: 'Shock', description: 'COST:1/d, R: POW, Shocks target with damage or breaks shield'},

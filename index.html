@@ -72,8 +72,8 @@
                         <div class="col-sm">
                             <input type="text" class="form-control form-control-sm" v-model="npc.hp" maxlength="2" size="2">
                         </div>
-                        <div class="col-sm">
-                            <button class="btn btn-outline-secondary form-control-sm" type="button" id="button-addon1" v-on:click="kill(index)">Kill</button>
+                        <div class="col-sm btn-group btn-group-sm">
+                            <a role="button" class="btn btn-info btn-xsm" v-on:click.prevent="kill(index)">Kill</a>
                         </div>
                     </div>
                 </td>
